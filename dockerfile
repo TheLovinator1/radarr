@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine
 
 ARG pkgver="4.0.4.5909"
 ARG source="https://radarr.servarr.com/v1/update/develop/updatefile?version=${pkgver}&os=linuxmusl&runtime=netcore&arch=x64"
