@@ -1,7 +1,6 @@
 FROM archlinux
 
 ARG pkgver="4.0.4.5922"
-ARG source_x86_64="https://radarr.servarr.com/v1/update/develop/updatefile?version=${pkgver}&os=linux&runtime=netcore&arch=x64"
 
 # Add mirrors for Sweden. You can add your own mirrors to the mirrorlist file. Should probably use reflector.
 ADD mirrorlist /etc/pacman.d/mirrorlist
@@ -24,13 +23,14 @@ useradd --system --uid 1000 --gid 1000 radarr && \
 install -d -o radarr -g radarr -m 775 /var/lib/radarr /usr/lib/radarr/bin /tmp/radarr /media
 
 # Update the system and install depends
-RUN pacman -Syu --noconfirm && pacman -S sqlite wget --noconfirm
+RUN pacman -Syu --noconfirm && pacman -S sqlite --noconfirm
 
 ADD package_info /tmp/radarr
 
 WORKDIR /tmp/radarr
 
-RUN wget "${source_x86_64}" -O "Radarr.develop.${pkgver}.linux-core-x64.tar.gz"
+# Download and extract the package
+ADD "https://radarr.servarr.com/v1/update/develop/updatefile?version=${pkgver}&os=linux&runtime=netcore&arch=x64" "/tmp/radarr/Radarr.develop.${pkgver}.linux-core-x64.tar.gz"
 RUN tar -xf "Radarr.develop.${pkgver}.linux-core-x64.tar.gz" -C /tmp/radarr && \
 rm "Radarr.develop.${pkgver}.linux-core-x64.tar.gz" && \
 rm -rf "Radarr/Radarr.Update" && \
