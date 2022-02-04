@@ -21,9 +21,9 @@ You want to pass /media to the container. If you use two different volumes hardl
 
 ## Ports
 
-| Port | Description | Required |
-| ---- | ----------- | -------- |
-| 7878 | Web ui      | Yes      |
+| Port     | Description | Required |
+| -------- | ----------- | -------- |
+| 7878/tcp | Web ui      | Yes      |
 
 ## Need help?
 
