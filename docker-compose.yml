@@ -1,6 +1,6 @@
 services:
   radarr:
-    container_name: arch-radarr
+    container_name: radarr
     image: ghcr.io/thelovinator1/radarr:master
     # build: .
     restart: unless-stopped
