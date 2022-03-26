@@ -4,7 +4,7 @@ Radarr is a movie collection manager for Usenet and BitTorrent users. It can mon
 
 ## Docker
 
-This Docker image is using the [Arch Linux](https://hub.docker.com/_/archlinux/) as base image. Radarr runs as a user with the id `1000`.
+This Docker image is using [Ubuntu 22.04](https://hub.docker.com/_/ubuntu/) as base image. Radarr runs as a user with the id `1000`.
 
 ## How to get hardlinks working
 
@@ -30,4 +30,4 @@ You want to pass /media to the container. If you use two different volumes hardl
 - Email: [tlovinator@gmail.com](mailto:tlovinator@gmail.com)
 - Discord: TheLovinator#9276
 - Steam: [TheLovinator](https://steamcommunity.com/id/TheLovinator/)
-- Send an issue: [docker-arch-radarr/issues](https://github.com/TheLovinator1/docker-arch-radarr/issues)
+- Send an issue: [radarr/issues](https://github.com/Feed-The-Fish/radarr/issues)

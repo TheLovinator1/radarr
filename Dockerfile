@@ -1,20 +1,14 @@
-FROM archlinux
+FROM ubuntu:devel
 
-# Radarr version
-ARG pkgver="4.0.4.5922"
-
-# Add mirrors for Sweden. You can add your own mirrors to the mirrorlist file. Should probably use reflector.
-ADD mirrorlist /etc/pacman.d/mirrorlist
-
-# NOTE: For Security Reasons, archlinux image strips the pacman lsign key.
-# This is because the same key would be spread to all containers of the same
-# image, allowing for malicious actors to inject packages (via, for example,
-# a man-in-the-middle).
-RUN gpg --refresh-keys && pacman-key --init && pacman-key --populate archlinux
-
-# Set locale. Needed for some programs.
-# https://wiki.archlinux.org/title/locale
-RUN echo "en_US.UTF-8 UTF-8" >"/etc/locale.gen" && locale-gen && echo "LANG=en_US.UTF-8" >"/etc/locale.conf"
+# https://github.com/opencontainers/image-spec/blob/main/annotations.md#pre-defined-annotation-keys
+LABEL org.opencontainers.image.authors="Joakim Hellsén <tlovinator@gmail.com>" \
+org.opencontainers.image.url="https://github.com/Feed-The-Fish/jackett" \
+org.opencontainers.image.documentation="https://github.com/Feed-The-Fish/jackett" \
+org.opencontainers.image.source="https://github.com/Feed-The-Fish/jackett" \
+org.opencontainers.image.vendor="Joakim Hellsén" \
+org.opencontainers.image.license="GPL-3.0+" \
+org.opencontainers.image.title="Radarr" \
+org.opencontainers.image.description="Radarr is a movie collection manager for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new movies and will interface with clients and indexers to grab, sort, and rename them. It can also be configured to automatically upgrade the quality of existing files in the library when a better quality format becomes available."
 
 # Create a new user with id 1000 and name "radarr".
 # Also create folder that we will use later.
@@ -25,7 +19,8 @@ useradd --system --uid 1000 --gid 1000 radarr && \
 install -d -o radarr -g radarr -m 775 /var/lib/radarr /usr/lib/radarr/bin /tmp/radarr /media
 
 # Update the system and install depends
-RUN pacman -Syu --noconfirm && pacman -S sqlite --noconfirm
+# TODO: Automate libicu version with LoviBot?
+RUN apt-get update && apt-get install -y curl sqlite3 libicu70
 
 # Add custom Package Version under System -> Status
 ADD package_info /tmp/radarr
@@ -35,9 +30,9 @@ WORKDIR /tmp/radarr
 
 # Download and extract the package
 # TODO: We should check checksums here
-ADD "https://radarr.servarr.com/v1/update/develop/updatefile?version=${pkgver}&os=linux&runtime=netcore&arch=x64" "/tmp/radarr/Radarr.develop.${pkgver}.linux-core-x64.tar.gz"
-RUN tar -xf "Radarr.develop.${pkgver}.linux-core-x64.tar.gz" -C /tmp/radarr && \
-rm "Radarr.develop.${pkgver}.linux-core-x64.tar.gz" && \
+ADD "http://radarr.servarr.com/v1/update/develop/updatefile?os=linux&runtime=netcore&arch=x64" "/tmp/radarr/Radarr.master.linux-core-x64.tar.gz"
+RUN tar -xvzf "Radarr.master.linux-core-x64.tar.gz" -C /tmp/radarr && \
+rm "Radarr.master.linux-core-x64.tar.gz" && \
 rm -rf "Radarr/Radarr.Update" && \
 install -d -m 755 "/usr/lib/radarr/bin" && \
 cp -dpr "Radarr/." "/usr/lib/radarr/bin" && \

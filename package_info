@@ -1,4 +1,4 @@
-PackageAuthor=[TheLovinator](https://github.com/TheLovinator1/docker-arch-radarr)
+PackageAuthor=[TheLovinator](https://github.com/feed-the-fish/radarr)
 UpdateMethod=External
-UpdateMethodMessage=flag Update your Docker container or make an [issue on GitHub](https://github.com/TheLovinator1/docker-arch-radarr/issues).
+UpdateMethodMessage=flag Update your Docker container or make an [issue on GitHub](https://github.com/feed-the-fish/radarr/issues).
 Branch=develop
