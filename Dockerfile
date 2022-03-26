@@ -19,7 +19,7 @@ useradd --system --uid 1000 --gid 1000 radarr && \
 install -d -o radarr -g radarr -m 775 /var/lib/radarr /usr/lib/radarr/bin /tmp/radarr /media
 
 # Update the system and install depends
-# TODO: Automate libicu version with LoviBot?
+# TODO: #5 Automate libicu version with LoviBot?
 RUN apt-get update && apt-get install -y curl sqlite3 libicu70
 
 # Add custom Package Version under System -> Status
@@ -29,7 +29,7 @@ ADD package_info /tmp/radarr
 WORKDIR /tmp/radarr
 
 # Download and extract the package
-# TODO: We should check checksums here
+# TODO: #6 We should check checksums here
 ADD "http://radarr.servarr.com/v1/update/develop/updatefile?os=linux&runtime=netcore&arch=x64" "/tmp/radarr/Radarr.master.linux-core-x64.tar.gz"
 RUN tar -xvzf "Radarr.master.linux-core-x64.tar.gz" -C /tmp/radarr && \
 rm "Radarr.master.linux-core-x64.tar.gz" && \
