@@ -1,7 +1,7 @@
 services:
   radarr:
     container_name: radarr
-    image: ghcr.io/feed-the-fish/radarr:master
+    image: ghcr.io/TheLovinator1/radarr:master
     restart: unless-stopped
     ports:
       - "7878:7878"
