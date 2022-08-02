@@ -1,10 +1,13 @@
 # Radarr
 
-Radarr is a movie collection manager for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new movies and will interface with clients and indexers to grab, sort, and rename them. It can also be configured to automatically upgrade the quality of existing files in the library when a better quality format becomes available.
+Radarr is a movie collection manager for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new movies
+and will interface with clients and indexers to grab, sort, and rename them. It can also be configured to automatically
+upgrade the quality of existing files in the library when a better quality format becomes available.
 
 ## Docker
 
-This Docker image is using [Ubuntu 22.04](https://hub.docker.com/_/ubuntu/) as base image. Radarr runs as a user with the id `1000`.
+This Docker image is using [Ubuntu 22.04](https://hub.docker.com/_/ubuntu/) as base image. Radarr runs as a user with
+the id `1000`.
 
 ## How to get hardlinks working
 
