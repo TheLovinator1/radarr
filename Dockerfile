@@ -20,7 +20,7 @@ install -d -o radarr -g radarr -m 775 /var/lib/radarr /usr/lib/radarr/bin /tmp/r
 
 # Update the system and install depends
 # TODO: #5 Automate libicu version with LoviBot?
-RUN apt-get update && apt-get install -y curl sqlite3 libicu70
+RUN apt-get update && apt-get install -y curl sqlite3 libicu71
 
 # Add custom Package Version under System -> Status
 ADD package_info /tmp/radarr
