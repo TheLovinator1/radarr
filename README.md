@@ -1,3 +1,8 @@
+# Don't use this :-)
+
+Better containers are out there, you should use [linuxserver/radarr](https://github.com/linuxserver/docker-radarr)
+instead.
+
 # Radarr
 
 Radarr is a movie collection manager for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new movies
@@ -25,12 +30,11 @@ You want to pass /media to the container. If you use two different volumes hardl
 ## Ports
 
 | Port     | Description | Required |
-| -------- | ----------- | -------- |
+|----------|-------------|----------|
 | 7878/tcp | Web ui      | Yes      |
 
 ## Need help?
 
 - Email: [tlovinator@gmail.com](mailto:tlovinator@gmail.com)
 - Discord: TheLovinator#9276
-- Steam: [TheLovinator](https://steamcommunity.com/id/TheLovinator/)
-- Send an issue: [radarr/issues](https://github.com/Feed-The-Fish/radarr/issues)
+- Send an issue: [radarr/issues](https://github.com/TheLovinator1/radarr/issues)
